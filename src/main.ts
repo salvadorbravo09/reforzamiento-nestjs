@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { envs } from './config/envs';
 
 async function bootstrap() {
   // Crear la aplicación NestJS
@@ -18,6 +19,7 @@ async function bootstrap() {
   );
 
   // Iniciar el servidor en el puerto configurado
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(envs.port || 3000);
+  console.log(`Server is running on port ${envs.port}`);
 }
 bootstrap();
